@@ -1,4 +1,3 @@
-// @ts-check
 import { test, expect } from '@playwright/test';
 
 test('Fetch title', async ({ page }) => {
@@ -11,5 +10,3 @@ test('Fetch title', async ({ page }) => {
   await page.click("//span[normalize-space()='Start Testing Now']");
   await page.waitForTimeout(2000);
 }); 
-
-
