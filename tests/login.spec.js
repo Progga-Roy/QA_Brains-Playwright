@@ -55,3 +55,15 @@ test('Login with empty email and empty password', async ({ page }) => {
   await expect(passwordRequiredFieldErrorText).toHaveText("Password is a required field")
 
 }); 
+test('Login with correct email and correct password', async ({ page }) => {
+  await page.goto('https://practice.qabrains.com/');
+  await page.fill("#email","qa_testers@qabrains.com");
+  await page.fill("#password","Password123");
+  const loginBtn = page.locator("button[type='submit']");
+  await expect(loginBtn).toBeVisible();
+  await loginBtn.click();
+  const seccessMsg = page.locator(".mb-10.text-right");
+  await expect(seccessMsg).toHaveText("Login Successful");
+  await expect(page).toHaveURL("https://practice.qabrains.com/?logged=true")
+
+});
