@@ -13,9 +13,9 @@ export default defineConfig({
     trace: 'on-first-retry',
     headless: false,       // show the browser
     viewport: null,        // disables fixed viewport
-    // launchOptions: {
-    //   args: ['--start-maximized'], // starts browser maximized
-    // },
+    launchOptions: {
+      args: ['--start-maximized'], // starts browser maximized
+    },
   },
 
   projects: [
