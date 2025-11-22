@@ -30,3 +30,28 @@ test('Login with incorrect email and correct password', async ({ page }) => {
    await page.waitForTimeout(2000);
 }); 
 
+test('Login with empty email and correct password', async ({ page }) => {
+  await page.goto('https://practice.qabrains.com/');
+  await page.fill("#email","");
+  await page.fill("#password","Password123");
+  await page.click("button[type='submit']");
+  await page.waitForTimeout(2000);
+  const emailRequiredFieldErrorText = page.locator(".text-red-500.text-sm.mt-1")
+  await expect(emailRequiredFieldErrorText).toHaveText("Email is a required field")
+  await page.waitForTimeout(2000);
+}); 
+
+test('Login with empty email and empty password', async ({ page }) => {
+  await page.goto('https://practice.qabrains.com/');
+  await page.fill("#email","");
+  await page.fill("#password","");
+  await page.click("button[type='submit']");
+  await page.waitForTimeout(2000);
+  const emailRequiredFieldErrorText = page.locator(".text-red-500.text-sm.mt-1:has-text('Email is a required field')");
+  await expect(emailRequiredFieldErrorText).toBeVisible();
+  await expect(emailRequiredFieldErrorText).toHaveText("Email is a required field");
+  const passwordRequiredFieldErrorText = page.locator(".text-red-500.text-sm.mt-1:has-text('Password is a required field')");
+  await expect(passwordRequiredFieldErrorText).toBeVisible();
+  await expect(passwordRequiredFieldErrorText).toHaveText("Password is a required field")
+
+}); 
