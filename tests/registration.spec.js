@@ -16,5 +16,4 @@ test('User Registration', async({page})=>{
     await submitBtn.click();
     const regSuccessMsg = page.locator(".mb-10.text-right");
     await expect(regSuccessMsg).toHaveText("Registration Successful");
-
 })
